@@ -38,7 +38,8 @@ project/
 
 ## Acknowledgments
 
-
 - Professor Manuel Toharia
 - Professor Joel Trudeau
 - Inspiration: PrintLab. "3D Printed Auto Page Turner," *Youtube*.
+
+Last but not least, Lenie, this won't be possible without you! :)
