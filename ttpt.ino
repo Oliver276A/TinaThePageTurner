@@ -1,8 +1,8 @@
 #include <Servo.h>
 
 /* To do
-- Glitchy page flip
 - Get the wheel working
+- Buzzing (might be power issue)
 */
 
 // Pin Assignment
@@ -53,21 +53,25 @@ void loop() {
   getDistance();
   Serial.println(distance);
 
+
   if ((distance > 5) and (distance < 30)) { // 30 seems to be a reasonable distance to trigger the robot. Also, less than 5cm is excluded because of the turning off mechanism
+    
+    delay(100); // Wait for one more tick to check if glitching
+    getDistance();
+    Serial.println(distance);
+    if ((distance > 5) and (distance < 30)) { // Not glitching, proceed
+      stick.write(0); // First, the stick goes to the horizontal position, ready to lift a page
 
-    stick.write(0); // First, the stick goes to the horizontal position, ready to lift a page
+      wheel.write(170); // Then, wheel spins (clockwise) for a second
+      delay(1000);
+      wheel.write(90);
 
-    wheel.write(170); // Then, wheel spins (clockwise) for a second
-    delay(1000);
-    wheel.write(90);
-
-    // Then the stick slowly lifts and flips the page
-    for(int a = 0; a < 135; a ++) { // For each degree
-      stick.write(a);
-      delay(25);
+      // Then the stick slowly lifts and flips the page
+      for(int a = 0; a < 135; a ++) { // For each degree
+        stick.write(a);
+        delay(25);
+      }
     }
-
-
   }
 
 
@@ -92,7 +96,7 @@ void loop() {
     }
   }
   
-  delay(500);
+  delay(750);
 }
 
 void getDistance() {
