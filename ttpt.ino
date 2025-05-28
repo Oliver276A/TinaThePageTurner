@@ -39,6 +39,7 @@ void setup() {
     }
   }
   robotOn = true;
+  stick.write(135); // Stick goes to the left and hold the sheet
 }
 
 void loop() {
@@ -47,15 +48,31 @@ void loop() {
   getDistance();
   Serial.println(distance);
 
+  if ((distance > 5) and (distance < 30)) { // 30 seems to be a reasonable distance to trigger the robot. Also, less than 5cm is excluded because of the turning off mechanism
+
+    stick.write(0); // First, the stick goes to the horizontal position, ready to lift a page
+
+    wheel.write(170); // Then, wheel spins (clockwise) for a second
+    delay(1000);
+    wheel.write(90);
+
+    // Then the stick slowly lifts and flips the page
+    for(int a = 0; a < 135; a ++) { // For each degree
+      stick.write(a);
+      delay(25);
+    }
+
+
+  }
 
 
   // Turning off mechanism
-  if ((distance < 5) and (robotOn = true)) { // If very close, trigger the mechanism
+  if ((distance <= 5) and (robotOn = true)) { // If very close, trigger the mechanism
 
     int j = 0; // Make an integer
 
-    getDistance(); // Get new distance
     while(j < 6) {
+      getDistance(); // Get new distance
       if (distance <= 5) { // Very close
         j ++; // Count six consequetive times (3 seconds)
         delay(500);
@@ -64,11 +81,13 @@ void loop() {
     }
 
     if (j >= 6) {
-      while(true) {} //If more than 3 seconds, shut down
+      stick.write(0); // Stick returns to neutral position
+      Serial.println("Turning off!");
+      while(true) {} // If more than 3 seconds, shut down
     }
   }
   
-  delay(1000);
+  delay(500);
 }
 
 void getDistance() {
