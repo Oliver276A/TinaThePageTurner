@@ -43,7 +43,7 @@ void setup() {
     }
   }
   robotOn = true;
-  stick.write(135); // Stick goes to the left and hold the sheet
+  stick.write(160); // Stick goes to the left and hold the sheet
 }
 
 void loop() {
@@ -60,16 +60,16 @@ void loop() {
     Serial.println(distance);
     if ((distance > 5) and (distance < 30)) { // Not glitching, proceed
       stick.write(0); // First, the stick goes to the horizontal position, ready to lift a page
-      delay(500); // Wait for the stick to arrive to the right
+      delay(250); // Wait for the stick to arrive to the right
 
       wheel.write(170); // Then, wheel spins (clockwise) for a second
-      delay(1000);
+      delay(500);
       wheel.write(90);
 
       // Then the stick slowly lifts and flips the page
-      for(int a = 0; a < 135; a ++) { // For each degree
+      for(int a = 0; a < 160; a ++) { // For each degree
         stick.write(a);
-        delay(25);
+        delay(10);
       }
     }
   }
