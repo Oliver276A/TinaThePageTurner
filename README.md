@@ -38,6 +38,7 @@ project/
 
 ## Acknowledgments
 
+
 - Professor Manuel Toharia
 - Professor Joel Trudeau
-- Inspiration: PrintLab. "3D Printed Auto Page Turner," **Youtube**.
+- Inspiration: PrintLab. "3D Printed Auto Page Turner," *Youtube*.
