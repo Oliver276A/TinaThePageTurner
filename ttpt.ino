@@ -1,5 +1,10 @@
 #include <Servo.h>
 
+/* To do
+- Glitchy page flip
+- Get the wheel working
+*/
+
 // Pin Assignment
 const int echoPin = 5;
 const int trigPin = 6;
