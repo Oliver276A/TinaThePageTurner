@@ -46,8 +46,7 @@ cd TinaThePageTurner
 TinaThePageTurner/
 │
 ├── README.md        # This file
-├── HARDWARE.md      # Hardware description
-├── CODE.md          # Code description
+├── Final-Report.md  # Final intern report for MakerSPACE
 ├── ttpt.ino         # Arduino sketch
 └── images/          # Images folder
 
