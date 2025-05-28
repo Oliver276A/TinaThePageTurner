@@ -1,4 +1,4 @@
-# Tina the Page Turner
+# Tina "the Page" Turner
 
 Like the name suggests, Tina turns pages for piano players.
 
