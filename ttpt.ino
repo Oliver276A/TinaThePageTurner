@@ -48,7 +48,6 @@ void setup() {
 
 void loop() {
 
-  // Actual Loop
   getDistance();
   Serial.println(distance);
 
@@ -62,12 +61,20 @@ void loop() {
       stick.write(0); // First, the stick goes to the horizontal position, ready to lift a page
       delay(250); // Wait for the stick to arrive to the right
 
+      // Jolts a bit to get grip
+      for (int w = 0; w < 8; w ++) {
+        wheel.write(130);
+        delay(75);
+        wheel.write(80);
+        delay(25);
+      }
+      // Wheel turns
       for (int s = 91; s < 100; s ++) { // Slowly increasing speed for best grip
         wheel.write(s);
-        delay(250);
+        delay(100);
       }
-      //delay(150);
-      wheel.write(90);
+
+      wheel.write(90); // Stop!
 
       // Then the stick slowly lifts and flips the page
       for(int a = 0; a < 160; a ++) { // For each degree
@@ -75,10 +82,6 @@ void loop() {
         delay(10);
       }
 
-      // After the stick arrives on the left, the wheel turns slowly to move the page for next flip
-      wheel.write(92);
-      delay(2000); // Might make loop longer than desired
-      wheel.write(90); // Should be moved to the start of the loop
     }
   }
 
@@ -90,6 +93,7 @@ void loop() {
 
     while(j < 6) {
       getDistance(); // Get new distance
+      Serial.println(distance);
       if (distance <= 5) { // Very close
         j ++; // Count six consequetive times (3 seconds)
         delay(500);
