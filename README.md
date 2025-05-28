@@ -10,18 +10,18 @@ Like the name suggests, Tina turns pages for piano players.
 
 ### Prerequisites
 
-- List prerequisites here
-- For example: Arduino IDE, Python, etc.
+You will need the following software:
+- 
 
 ### Installation
 
 ```bash
 # Clone the repository. Replace <project> with repo name.
-git clone https://github.com/username/<project>.git
+git clone https://github.com/Oliver276A/TinaThePageTurner.git
 
 # Navigate to project directory
 cd project
-
+```
 
 Include screenshots if applicable.
 
@@ -36,16 +36,8 @@ project/
 └── README.md        # This file
 ```
 
-## Contributing
-
-Instructions for how to contribute to this project if applicable when working on a team!
-
-## License
-
-This project is licensed under the MIT License.
-
 ## Acknowledgments
 
-- Person or resource 1
-- Person or resource 2
-- Inspiration 
+- Professor Manuel Toharia
+- Professor Joel Trudeau
+- Inspiration: PrintLab. "3D Printed Auto Page Turner," **Youtube**.
