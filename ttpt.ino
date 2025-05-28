@@ -64,7 +64,7 @@ void loop() {
 
       for (int s = 91; s < 100; s ++) { // Slowly increasing speed for best grip
         wheel.write(s);
-        delay(200);
+        delay(250);
       }
       //delay(150);
       wheel.write(90);
@@ -74,6 +74,11 @@ void loop() {
         stick.write(a);
         delay(10);
       }
+
+      // After the stick arrives on the left, the wheel turns slowly to move the page for next flip
+      wheel.write(92);
+      delay(2000); // Might make loop longer than desired
+      wheel.write(90); // Should be moved to the start of the loop
     }
   }
 
