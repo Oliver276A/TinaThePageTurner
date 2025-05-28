@@ -1,13 +1,12 @@
 #include <Servo.h>
 
 /* To do
-- Get the wheel working
 - Buzzing (might be power issue)
 */
 
 // Pin Assignment
 const int echoPin = 5;
-const int trigPin = 6;
+const int trigPin = 6; 
 const int wheelPin = 9;
 const int stickPin = 11;
 
@@ -61,6 +60,7 @@ void loop() {
     Serial.println(distance);
     if ((distance > 5) and (distance < 30)) { // Not glitching, proceed
       stick.write(0); // First, the stick goes to the horizontal position, ready to lift a page
+      delay(500); // Wait for the stick to arrive to the right
 
       wheel.write(170); // Then, wheel spins (clockwise) for a second
       delay(1000);
