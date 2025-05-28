@@ -62,8 +62,11 @@ void loop() {
       stick.write(0); // First, the stick goes to the horizontal position, ready to lift a page
       delay(250); // Wait for the stick to arrive to the right
 
-      wheel.write(170); // Then, wheel spins (clockwise) for a second
-      delay(500);
+      for (int s = 95; s < 105; s ++) { // Slowly increasing speed for best grip
+        wheel.write(s);
+        delay(150);
+      }
+      delay(250);
       wheel.write(90);
 
       // Then the stick slowly lifts and flips the page
