@@ -37,17 +37,20 @@ git clone https://github.com/Oliver276A/TinaThePageTurner.git
 ```bash
 cd TinaThePageTurner
 ```
-6. You can now explore Tina by the command `code .`. Enjoy!
+![Installation Screenshot](/images/inst.png)
+6. You can now explore Tina by the command `code .`! Enjoy!
 
 ## Project Structure
 
 ```
-project/
+TinaThePageTurner/
 │
-├── docs/            # Additional documentation files if applicable
-├── tests/           # Test files if applicable
-├── .gitignore       # Git ignore file
-└── README.md        # This file
+├── README.md        # This file
+├── HARDWARE.md      # Hardware description
+├── CODE.md          # Code description
+├── ttpt.ino         # Arduino sketch
+└── images/          # Images folder
+
 ```
 
 ## Acknowledgments
