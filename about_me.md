@@ -35,5 +35,3 @@ delay(1000); // wait for a second
 }
 
 ```
-
-i hate zippers
