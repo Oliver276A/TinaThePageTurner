@@ -1,4 +1,8 @@
 # Automatic Page Turner - Final Report
+Dawson College - MakerSPACE
+Student Name: Oliver Mui
+Submitted to: Professor Joel Trudeau
+Date submitted: 2025-06-01
 
 ## Components and tools required
 - **Electronic**

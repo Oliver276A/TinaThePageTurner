@@ -62,7 +62,7 @@ void loop() {
       stick.write(0); // First, the stick goes to the horizontal position, ready to lift a page
       delay(250); // Wait for the stick to arrive to the right
 
-      wheel.write(170); // Then, wheel spins (clockwise) for a second
+      wheel.write(100); // Then, wheel spins (clockwise) for half a second
       delay(500);
       wheel.write(90);
 
