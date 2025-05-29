@@ -62,25 +62,11 @@ void loop() {
       delay(250); // Wait for the stick to arrive to the right
 
       // Jolts a bit to get grip
-      for (int w = 0; w < 4; w ++) {
-        wheel.write(120);
-        delay(100);
+      for (int w = 90; w <= 115; w ++) {
+        wheel.write(w);
+        delay(60);
         wheel.write(90);
-        delay(100);
-      }
-      wheel.write(95); // Go straight for a bit
-      delay(250);
-      for (int w = 0; w < 4; w ++) { // Pulse again
-        wheel.write(120);
-        delay(100);
-        wheel.write(90);
-        delay(100);
-      }
-
-      // Wheel turns
-      for (int s = 91; s < 96; s ++) { // Slowly increasing speed for best grip
-        wheel.write(s);
-        delay(100);
+        delay(50);
       }
 
       wheel.write(90); // Stop!
