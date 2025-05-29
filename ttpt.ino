@@ -63,18 +63,18 @@ void loop() {
 
       // Jolts a bit to get grip
       for (int w = 0; w < 4; w ++) {
-        wheel.write(110);
-        delay(75);
+        wheel.write(120);
+        delay(100);
         wheel.write(90);
-        delay(25);
+        delay(100);
       }
       wheel.write(95); // Go straight for a bit
       delay(250);
       for (int w = 0; w < 4; w ++) { // Pulse again
-        wheel.write(110);
-        delay(75);
+        wheel.write(120);
+        delay(100);
         wheel.write(90);
-        delay(25);
+        delay(100);
       }
 
       // Wheel turns
