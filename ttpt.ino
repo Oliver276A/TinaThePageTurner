@@ -70,7 +70,7 @@ void loop() {
       }
 
       wheel.write(160);
-      delay(500);
+      delay(100);
       wheel.write(96); // Go slowly to let stick go!
 
       // Then the stick slowly lifts and flips the page
