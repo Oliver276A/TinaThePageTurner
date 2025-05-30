@@ -62,21 +62,23 @@ void loop() {
       delay(250); // Wait for the stick to arrive to the right
 
       // Jolts a bit to get grip
-      for (int w = 90; w <= 115; w ++) {
+      for (int w = 90; w <= 125; w = w + 5) {
         wheel.write(w);
-        delay(60);
+        delay(50);
         wheel.write(90);
         delay(50);
       }
 
-      wheel.write(90); // Stop!
+      wheel.write(160);
+      delay(500);
+      wheel.write(96); // Go slowly to let stick go!
 
       // Then the stick slowly lifts and flips the page
       for(int a = 0; a < 160; a ++) { // For each degree
         stick.write(a);
         delay(10);
       }
-
+      wheel.write(90);
     }
   }
 
