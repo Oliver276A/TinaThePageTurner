@@ -5,13 +5,13 @@ Student Name: Oliver Mui
 Submitted to: Professor Joel Trudeau  
 Date submitted: 2025-06-01    
 
-## Introduction
+## 1. Introduction
 
 One of the issues that bother many musicians is that of turning pages, which greatly inhibits their performance (to the point where in some concerts there is a dedicated person to turn the pages for the musician). Some use electronic tablets as a substitute but it is expensive and inconvenient for quick annotation. I believe that many musicians would like to be able to enjoy the convenience of having the pages turned for them while using their physical book or sheet music, and this inspired me to create this project, that is to create a prototype of an automatic page turner dedicated for musicians.   
 
 This report will cover the planning, implementation and the results of this project, in an attempt to provide some insights on the development of such device.    
 
-## Project Description
+## 2. Project Description
 
 ### Inspiration
 
@@ -41,9 +41,9 @@ Lastly, one single structure is needed to connect all these components. At first
 
 Thus, afterwards, I adopted the idea of a light platform to which books are clipped by a wheel and a stick which turn the pages. Tina "the Page" Turner was born.   
 
-[Brainstorming doodle](/images/doodle1.png) [Brainstorming doodle](/images/doodle2.png)
+![Brainstorming doodle](/images/doodle1.png) ![Brainstorming doodle](/images/doodle2.png)
 
-## Implementation
+## 3. Implementation
 
 ### Hardware
 
@@ -59,5 +59,35 @@ Thus, afterwards, I adopted the idea of a light platform to which books are clip
     1. Scissors and cutters
     2. Hot glue gun
 
-The wiring is shown in the following schematic:
+**Creating the Frame of the Machine**    
+Insert diagram     
 
+**Installation of Electronic Components**     
+Insert diagram    
+
+The wiring is shown in the following schematic:     
+Insert schematic    
+
+Note that it is common practice to power servos with an external power supply, as the Arduino Uno does not provide sufficient current for the servos. However, during the course of this project, I did not notice significant power issues apart from the following: 1) The stick servo sometimes have trouble pushing the pages, especially when the page turner turns more than one pages by accident, and 2) A slight buzzing of the servos, which upon research seems to be linked to power issues. At any rate, the stick is not supposed to push more than one page, and the slight buzzing gets covered by the sound of the piano, and thus I did not connect an external power supply.    
+
+### Code
+
+With the hardware installed, it was time to hop onto my laptop and start coding.
+
+I first wrote a basic program with the wheel simply turning at a certain speed and the stick pushing the pages. To my surprise it already worked but three issues arose:    
+
+1. Machine starts right away, making it difficult to put books on the platform without accidentally triggering the page turning mechanism
+    - Solution: This is fixed by adding an initialization mechanism. The following code allows for activating the machine by placing one's hand 5cm (not likely to be triggered by accident) within the ultrasonic sensor for 6 cumulative ticks (0.5 second each):     
+    ```C++
+    int i = 0;
+    while(i < 6) {
+        getDistance();
+        if (distance < 5) {
+            i ++;
+            delay(500);
+        }
+    }
+    ```
+    I did not make i go back to zero in case the sensor glitches and detects an unreasonably big distance and reset the counter again.
+    
+2. 
