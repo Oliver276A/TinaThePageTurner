@@ -13,11 +13,11 @@ This report will cover the planning, implementation and the results of this proj
 
 ## 2. Project Description
 
-### Inspiration
+### 2.1. Inspiration
 
 The inspiration comes from my personal frustration over turning pages while trying to play a difficult piece. I do not own an electronic tablet, meaning my only options are to flip the pages myself or simply memorise the music.     
 
-### Objectives
+### 2.2. Objectives
 
 Several similar projects exist but they present a few problems: Firstly, most of such projects are optimized for book reading and not for musicians, so they either lay completely flat, or they require an extensive setup. The one project that is made for the piano requires the pianist to attach special magnets. To me, all these reduce the attractiveness of page flipping machines to musicians.   
 
@@ -29,7 +29,7 @@ Thus, the goal of this project is to create a prototype of an **autonomatic** ma
 
 With limited resources, time and skills, I do not expect to create a perfectly functional machine. However, through the creation of a **basic prototype**, I hope to demonstrate that such device is feasible and can be perfected and developped into an real product, while sharing my experience which I hope would be of value to someone who wants to develop something similar.     
 
-### Design and Planning
+### 2.3. Design and Planning
 
 The first question to answer, and this will prove to be the most important question, is how the pages should be picked up. Static electricity and magnets do not seem practical, so I decided to rely on the traditional mechanical method, which exist on many existing models - using a wheel to lift the pages.    
 
@@ -41,11 +41,11 @@ Lastly, one single structure is needed to connect all these components. At first
 
 Thus, afterwards, I adopted the idea of a light platform to which books are clipped by a wheel and a stick which turn the pages. Tina "the Page" Turner was born.   
 
-![Brainstorming doodle](/images/doodle1.png) ![Brainstorming doodle](/images/doodle2.png)
+![Brainstorming doodle](/images/doodle.png)
 
 ## 3. Implementation
 
-### Hardware
+### 3.1. Hardware
 
 - **Electronic Components**
     1. 180 degrees servo (Feetech FS90) - For the turning stick
@@ -60,7 +60,7 @@ Thus, afterwards, I adopted the idea of a light platform to which books are clip
     2. Hot glue gun
 
 **Creating the Frame of the Machine**    
-Insert diagram     
+![Diagram of the frame](/images/frame.png)
 
 **Installation of Electronic Components**     
 Insert diagram    
@@ -70,14 +70,14 @@ Insert schematic
 
 Note that it is common practice to power servos with an external power supply, as the Arduino Uno does not provide sufficient current for the servos. However, during the course of this project, I did not notice significant power issues apart from the following: 1) The stick servo sometimes have trouble pushing the pages, especially when the page turner turns more than one pages by accident, and 2) A slight buzzing of the servos, which upon research seems to be linked to power issues. At any rate, the stick is not supposed to push more than one page, and the slight buzzing gets covered by the sound of the piano, and thus I did not connect an external power supply.    
 
-### Code
+### 3.2. Code
 
 With the hardware installed, it was time to hop onto my laptop and start coding.
 
 I first wrote a basic program with the wheel simply turning at a certain speed and the stick pushing the pages. To my surprise it already worked but three issues arose:    
 
 1. Machine starts right away, making it difficult to put books on the platform without accidentally triggering the page turning mechanism
-    - Solution: This is fixed by adding an initialization mechanism. The following code allows for activating the machine by placing one's hand 5cm (not likely to be triggered by accident) within the ultrasonic sensor for 6 cumulative ticks (0.5 second each):     
+    - **Solution**: This is fixed by adding an initialization mechanism. The following code allows for activating the machine by placing one's hand 5cm (not likely to be triggered by accident) within the ultrasonic sensor for 6 cumulative ticks (0.5 second each):     
     ```C++
     int i = 0;
     while(i < 6) {
@@ -88,6 +88,47 @@ I first wrote a basic program with the wheel simply turning at a certain speed a
         }
     }
     ```
-    I did not make i go back to zero in case the sensor glitches and detects an unreasonably big distance and reset the counter again.
+    - I did not make i go back to zero in case the sensor glitches and detects an unreasonably big distance and reset the counter again.
+    - Similarly, a turning off mechanism is added but this time, the counter will reset if the sensor senses a big distance again
+    ```C++
+    // Turning off mechanism
+    if ((distance <= 5) and (robotOn = true)) { // If very close, trigger the mechanism
+
+        int j = 0; // Make an integer
+
+        while(j < 6) {
+            getDistance(); // Get new distance
+            Serial.println(distance);
+            if (distance <= 5) { // Very close
+                j ++; // Count six consequetive times (3 seconds)
+                delay(500);
+            }
+            else {break;} // If far again, proceed
+        }
+
+        if (j >= 6) {
+            stick.write(0); // Stick returns to neutral position
+            Serial.println("Turning off!");
+            while(true) {} // If more than 3 seconds, shut down
+        }
+    }
+    ```
+
+2. Glitchy ultrasonic sensor readings, triggering the turning mechanism when not needed
+    - **Solution**: When the ultrasonic sensor senses a distance less than 30cm, it checks shortly afterwards again. If the distance is still less than 30cm, the turning mechanism is triggered.
+    ```C++
+    if ((distance > 5) and (distance < 30)) { // 30 seems to be a reasonable distance to trigger the robot. Also, less than 5cm is excluded because of the turning off mechanism
     
-2. 
+        delay(100); // Wait for one more tick to check if glitching
+        getDistance();
+        Serial.println(distance);
+        if ((distance > 5) and (distance < 30)) { // Not glitching, proceed
+        // The page turning mechanism follows...
+    ```
+
+3. The rubber wheel fails to pick up any pages some times, and pick up more than one pages the other times
+    - This issue proves to be the central challenge of the project. As it concerns both software and hardware, I will talk about this in the next section.    
+
+### 3.3. The Wheel Dilemma
+
+### 3.4. Sensor Documentation

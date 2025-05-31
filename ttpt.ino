@@ -33,7 +33,7 @@ void setup() {
   pinMode(echoPin, INPUT);
   Serial.begin(9600);
 
-    // First wait for signal to start
+  // First wait for signal to start
   int i = 0;
   while(i < 6) {
     getDistance();
