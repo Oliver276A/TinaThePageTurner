@@ -63,10 +63,30 @@ Thus, afterwards, I adopted the idea of a light platform to which books are clip
 ![Diagram of the frame](/images/frame.png)
 
 **Installation of Electronic Components**     
-Insert diagram    
+*Overview*   
+![Photo of Tina](/images/overview.jpg)
+*Ultrasonic sensor*    
+![Photo of ultrasonic sensor installed](/images/us-sensor.jpg)
+- The ultrasonic sensor can be installed any way that is convenient
+- I chose to tape the connectors on the top right of the frame simply because it is the easiest to install; It is also easy for a pianist to tilt their head to trigger the page turner
+*Stick*
+![Photo of servo and stick](/images/stick.jpg)
+- The stick is secured onto the 180 degree servo using a screw
+- Note that the stick is wrapped with clear tape in order to make it smoother and prevent damaging the pages
+- The ensemble is attached to the middle of the frame by hot glue
+*Wheel*
+![Photo of wheel attached to clothespeg](/images/wheel-and-clothespeg.jpg)
+- The wheel must be secured onto the continuous servo using a screw, otherwise it could fall off
+- The servo is attached to a stick, which itself is attached to the clothespeg using hot glue
+- The clothespeg is attached to the horizontal platform such that the wheel touches the back platform
+- A small triangular piece of cardboard was added to strengthen the connection     
+*Arduino Uno and Breadboard*
+![Wiring photo](/images/wiring-photo.jpg)
+- The Uno is secured by screws and the breadboard by adhesives
+- The wires are hidden from view by placing the Uno and the breadboard in the back of the platform    
 
 The wiring is shown in the following schematic:     
-Insert schematic    
+![Schematic diagram](/images/schematic.png)  
 
 Note that it is common practice to power servos with an external power supply, as the Arduino Uno does not provide sufficient current for the servos. However, during the course of this project, I did not notice significant power issues apart from the following: 1) The stick servo sometimes have trouble pushing the pages, especially when the page turner turns more than one pages by accident, and 2) A slight buzzing of the servos, which upon research seems to be linked to power issues. At any rate, the stick is not supposed to push more than one page, and the slight buzzing gets covered by the sound of the piano, and thus I did not connect an external power supply.    
 
