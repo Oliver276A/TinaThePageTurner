@@ -68,12 +68,12 @@ Thus, afterwards, I adopted the idea of a light platform to which books are clip
 *Ultrasonic sensor*    
 ![Photo of ultrasonic sensor installed](/images/us-sensor.jpg)
 - The ultrasonic sensor can be installed any way that is convenient
-- I chose to tape the connectors on the top right of the frame simply because it is the easiest to install; It is also easy for a pianist to tilt their head to trigger the page turner
+- I chose to tape the connectors on the top right of the frame simply because it is the easiest to install; It is also easy for a pianist to tilt their head to trigger the page turner     
 *Stick*
 ![Photo of servo and stick](/images/stick.jpg)
 - The stick is secured onto the 180 degree servo using a screw
 - Note that the stick is wrapped with clear tape in order to make it smoother and prevent damaging the pages
-- The ensemble is attached to the middle of the frame by hot glue
+- The ensemble is attached to the middle of the frame by hot glue     
 *Wheel*
 ![Photo of wheel attached to clothespeg](/images/wheel-and-clothespeg.jpg)
 - The wheel must be secured onto the continuous servo using a screw, otherwise it could fall off
@@ -92,7 +92,9 @@ Note that it is common practice to power servos with an external power supply, a
 
 ### 3.2. Code
 
-With the hardware installed, it was time to hop onto my laptop and start coding.
+With the hardware installed, it was time to hop onto my laptop and start coding.     
+
+In order to be able to incorporate servos in the program, the Arduino Servo library was included.    
 
 I first wrote a basic program with the wheel simply turning at a certain speed and the stick pushing the pages. To my surprise it already worked but three issues arose:    
 
@@ -151,4 +153,52 @@ I first wrote a basic program with the wheel simply turning at a certain speed a
 
 ### 3.3. The Wheel Dilemma
 
+The wheel relies on static friction to pick up the page. If the friction is insufficient, pressure could be added on the wheel and the paper. However, if this is too mcuh, the device might end up turning more than one page. By doing so, friction will increase both between the wheel and the top page, and between the top page and the pages below. Therefore, I concluded that while the pressure between the wheel and the page helps increase the friction, it is best to improve the grip through wheel material or code.     
+
+Upon some research, I found that WD-40 might help improving the wheel's grip. However, after wiping the surface of the wheel with it, I noticed no observable change in the wheel's grip, so soon I oriented to get grip by changing the behaviour of the wheel.     
+
+I first started by adding code that makes the wheel slowly accelerates. This meant that the wheel is less likely to slide. This improved grip significantly, but there is still inconsistency.     
+
+I then got inspired by the ABS on cars and added code that produced pulses of rotation. These short and quick rotations allow the wheel to move the page and give the wheel multiple opportunities to grip the page.     
+
+Finally, these two features are combined. The pulses slowly increase in speed to avoid gripping on the next page. This improved consistency immensely:
+```C++
+stick.write(0); // First, the stick goes to the horizontal position, ready to lift a page
+delay(250); // Wait for the stick to arrive to the right
+
+// Jolts a bit to get grip
+for (int w = 90; w <= 125; w = w + 5) {
+    wheel.write(w);
+    delay(50);
+    wheel.write(90);
+    delay(50);
+}
+
+wheel.write(160);
+delay(100);
+wheel.write(96); // Go slowly to let stick go! 
+```
+I also made the wheel go slowly in case a page is stuck under the wheel.
+
 ### 3.4. Sensor Documentation
+
+Only one ultrasonic sensor was used in the program. It works as follows:   
+1. Sensor sends a pulse and awaits the echo; The distance is calculated from the time difference
+2. 3 cumulative seconds of detection within 5cm initiate the device
+3. Upon detection within 30cm, the device double checks for glitches, then triggers the page turning mechanism
+4. Upon detection within 5cm, the device counts 6 consecutive ticks of 0.5 seconds and shuts off; If during the counting, the distance becomes long again, the counter is reset     
+
+```C++
+void getDistance() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distance = (duration * 0.034) / 2;
+}
+```
+
+For the code of the detection, please refer to the [code file](/ttpt.ino).      
+
