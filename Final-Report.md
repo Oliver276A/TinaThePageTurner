@@ -4,6 +4,8 @@ Dawson College - MakerSPACE
 Student Name: Oliver Mui  
 Submitted to: Professor Joel Trudeau  
 Date submitted: 2025-06-01    
+       
+[View on Github](https://github.com/Oliver276A/TinaThePageTurner/blob/main/Final-Report.md) or checkout the repository [here](https://github.com/Oliver276A/TinaThePageTurner).      
 
 ## 1. Introduction
 
@@ -64,18 +66,15 @@ Thus, afterwards, I adopted the idea of a light platform to which books are clip
 
 **Installation of Electronic Components**     
 *Overview*   
-![Photo of Tina](/images/overview.jpg)
+![Photo of Tina](/images/installation-photo.jpg)
 *Ultrasonic sensor*    
-![Photo of ultrasonic sensor installed](/images/us-sensor.jpg)
 - The ultrasonic sensor can be installed any way that is convenient
 - I chose to tape the connectors on the top right of the frame simply because it is the easiest to install; It is also easy for a pianist to tilt their head to trigger the page turner     
 *Stick*
-![Photo of servo and stick](/images/stick.jpg)
 - The stick is secured onto the 180 degree servo using a screw
 - Note that the stick is wrapped with clear tape in order to make it smoother and prevent damaging the pages
 - The ensemble is attached to the middle of the frame by hot glue     
 *Wheel*
-![Photo of wheel attached to clothespeg](/images/wheel-and-clothespeg.jpg)
 - The wheel must be secured onto the continuous servo using a screw, otherwise it could fall off
 - The servo is attached to a stick, which itself is attached to the clothespeg using hot glue
 - The clothespeg is attached to the horizontal platform such that the wheel touches the back platform
@@ -204,6 +203,8 @@ For the code of the detection, please refer to the [code file](/ttpt.ino) or to 
 
 ## 4. Results
 
+Click [here](/images/demo-video.mp4) for the demo video or [here](https://youtu.be/T23dxvnY-iA) for the demo video with commentary.
+
 ### 4.1. Analysis
 
 Tina was able to complete its basic objectives. It was able to flip pages under the condition that they are not too hard or stuck together. It seems to work better with a book that has been flipped frequently. Shuffling the pages a bit beforehand also helps.     
@@ -221,7 +222,7 @@ Tina is reactive. The triggering mechanism was easy. With the double-check preve
 
 Structurally, Tina presents a few weak points listed as follows:
 1. The adhesive holding the clothespeg may not be able to resist such a strong shear force
-2. The quality of the body is admittedly mediocre
+2. The quality of the body is admittedly mediocre     
 Many components that were held on by hot glue or tape were later changed to being held on by screws which seemed much more reliable.    
 
 ### 4.2. Discussion and Conclusion
@@ -232,10 +233,25 @@ Based on the findings, I propose the following improvements to the project:
     - Then the rotating time or even the rotating mechanism can be adapted to each page as needed, as some are more loose and some are tighter
 3. Placing the stick servo vertically lower to reduce the angle to reduce creasing of the pages and to improve the chances of the stick lifting a page
 4. For the wheel, a clip component (replacing the clothespeg) that is better attached and more resistant
-5. An optimized body frame design (take out unnecessary bits and weight)
+5. An optimized body frame design (take out unnecessary bits and weight)          
 
 In addition, there are numerous potential development to Tina, including but not limited to:
-1. Different user input: e.g. A sensor that detects foot motion
+1. Different user input: e.g. A sensor that detects foot motion, automatic counting, MIDI, etc.
 2. Reverse page turning
+3. Adaptation for other instruments e.g. To fit on sheet music stands          
 
-Tina was able to paint an optimistic picture.
+Tina was able to paint an optimistic picture for the development of an automatic page turning device. Although by no means perfect, Tina fulfilled its purpose of showing that the making of such a device is feasible at a low cost. The fact that Tina succeeded to carry out basic fundamental tasks means that with more and better resources and more time, a fully functional page turner that is practical, cheap, consistent, simple and reliable can be developed.    
+
+### 4.3. References
+
+- Page Turner. "Automatic Page Turner, by Page Turner Co., for Pianists and Musicians," *YouTube*, 9th Oct 2020, https://youtu.be/G2RFGrQZSTo?si=Q4xsxEa2sr18Slvu. Accessed 2nd Jun 2025.
+- jabish albuladora. "Automatic Page Turner Ph," *YouTube*, 21st Jun 2015, https://youtu.be/CKVff6EtwCs?si=Kb442-sn2RrqLdt4. Accessed 2nd Jun 2025.
+- Rehabmart. "PageFlip Automatic Page Turner2.flv," *YouTube*, 24th Feb 2010, https://youtu.be/1Xn1iUqC9gk?si=drv0QgZd-4C8tCpC. Accessed 2nd Jun 2025.
+- PrintLab. "3D Printed Auto Page Turner," *YouTube*, 4th Dec 2023, https://youtu.be/WpUmWCApFB4?si=h_dbwm2LjK1nmO1O. Accessed 2nd Jun 2025.
+- "Hey folks, Any idea how to increase the tire grip on my RC car? It’s pretty fast goes at 40km/h but the tires are so bad, and good tires are way too expensive than my RC cars due to import duties. Please share your suggestions!," r/rccars, *Reddit*, https://www.reddit.com/r/rccars/comments/11sehz6/hey_folks_any_idea_how_to_increase_the_tire_grip/. Accessed 2nd Jun 2025.                 
+
+### 4.4. Acknowledgements
+
+- Professor Manuel Toharia
+- Professor Joel Trudeau           
+And thank you, Lenie, for being always! :)
