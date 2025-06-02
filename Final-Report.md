@@ -200,5 +200,42 @@ void getDistance() {
 }
 ```
 
-For the code of the detection, please refer to the [code file](/ttpt.ino).      
+For the code of the detection, please refer to the [code file](/ttpt.ino) or to section 3.2.   
 
+## 4. Results
+
+### 4.1. Analysis
+
+Tina was able to complete its basic objectives. It was able to flip pages under the condition that they are not too hard or stuck together. It seems to work better with a book that has been flipped frequently. Shuffling the pages a bit beforehand also helps.     
+
+The number of pages it flips is still inconsistent, but its rate of success is much higher than in the initial development phase. The following are the main reasons for the inconsistency:    
+- Tina is unable to grab the page because:
+    - It does not have enough grip
+    - It does have enough grip but the page is stuck below the wheel
+    - It does have enough grip and moves the page but the stick was not able to lift it or turn it
+- Tina turns more than one page at the same time because:
+    - The turning time is too long and the wheel grabs the next pages
+    - The pages are stuck together     
+
+Tina is reactive. The triggering mechanism was easy. With the double-check preventing glitching, Tina seldoms turns pages unpredictably. Turning on and off the device could be annoying at times due to glitching (sometimes Tina would not turn off even after putting my hand in front of the sensor for 10 seconds), but it seems to be adequate in general.    
+
+Structurally, Tina presents a few weak points listed as follows:
+1. The adhesive holding the clothespeg may not be able to resist such a strong shear force
+2. The quality of the body is admittedly mediocre
+Many components that were held on by hot glue or tape were later changed to being held on by screws which seemed much more reliable.    
+
+### 4.2. Discussion and Conclusion
+
+Based on the findings, I propose the following improvements to the project:
+1. A grippier wheel
+2. More sensors (e.g. pressure sensor, another US sensor, etc.) to detect the status of the page turning motion
+    - Then the rotating time or even the rotating mechanism can be adapted to each page as needed, as some are more loose and some are tighter
+3. Placing the stick servo vertically lower to reduce the angle to reduce creasing of the pages and to improve the chances of the stick lifting a page
+4. For the wheel, a clip component (replacing the clothespeg) that is better attached and more resistant
+5. An optimized body frame design (take out unnecessary bits and weight)
+
+In addition, there are numerous potential development to Tina, including but not limited to:
+1. Different user input: e.g. A sensor that detects foot motion
+2. Reverse page turning
+
+Tina was able to paint an optimistic picture.
