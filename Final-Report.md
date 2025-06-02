@@ -64,21 +64,25 @@ Thus, afterwards, I adopted the idea of a light platform to which books are clip
 **Creating the Frame of the Machine**    
 ![Diagram of the frame](/images/frame.png)
 
-**Installation of Electronic Components**     
-*Overview*   
+**Installation of Electronic Components**   
+              
+*Overview*     
 ![Photo of Tina](/images/installation-photo.jpg)
 *Ultrasonic sensor*    
 - The ultrasonic sensor can be installed any way that is convenient
 - I chose to tape the connectors on the top right of the frame simply because it is the easiest to install; It is also easy for a pianist to tilt their head to trigger the page turner     
+       
 *Stick*
 - The stick is secured onto the 180 degree servo using a screw
 - Note that the stick is wrapped with clear tape in order to make it smoother and prevent damaging the pages
-- The ensemble is attached to the middle of the frame by hot glue     
+- The ensemble is attached to the middle of the frame by hot glue      
+         
 *Wheel*
 - The wheel must be secured onto the continuous servo using a screw, otherwise it could fall off
 - The servo is attached to a stick, which itself is attached to the clothespeg using hot glue
 - The clothespeg is attached to the horizontal platform such that the wheel touches the back platform
 - A small triangular piece of cardboard was added to strengthen the connection     
+          
 *Arduino Uno and Breadboard*
 ![Wiring photo](/images/wiring-photo.jpg)
 - The Uno is secured by screws and the breadboard by adhesives
@@ -254,4 +258,5 @@ Tina was able to paint an optimistic picture for the development of an automatic
 
 - Professor Manuel Toharia
 - Professor Joel Trudeau           
-And thank you, Lenie, for being always! :)
+        
+And thank you, Lenie, for being there for me always! :)
